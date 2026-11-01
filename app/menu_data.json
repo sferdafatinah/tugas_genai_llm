@@ -1,0 +1,267 @@
+[
+  {
+    "name": "Original Premium",
+    "text": "Dimsum original premium dengan cita rasa gurih. Tersedia dalam pilihan isi 4, 6, dan 8 buah.",
+    "category": "dimsum_premium",
+    "price": {
+      "4": 18000,
+      "6": 27000,
+      "8": 36000
+    }
+  },
+  {
+    "name": "Mentai Original",
+    "text": "Dimsum premium dengan varian saus mentai original. Cocok untuk pelanggan yang menyukai dimsum dengan cita rasa mentai.",
+    "category": "dimsum_premium",
+    "price": {
+      "4": 24000,
+      "6": 32000,
+      "8": 43000
+    }
+  },
+  {
+    "name": "Mentai Cheese",
+    "text": "Dimsum premium dengan perpaduan saus mentai dan keju. Tersedia dalam pilihan isi 4 dan 6 buah.",
+    "category": "dimsum_premium",
+    "price": {
+      "4": 27000,
+      "6": 38000
+    }
+  },
+  {
+    "name": "Mentai Spicy",
+    "text": "Dimsum premium dengan saus mentai bercita rasa pedas. Tersedia dalam pilihan isi 4, 6, dan 8 buah.",
+    "category": "dimsum_premium",
+    "price": {
+      "4": 28000,
+      "6": 38000,
+      "8": 51000
+    }
+  },
+  {
+    "name": "Mix Mentai Spicy Cheese",
+    "text": "Dimsum premium dengan kombinasi varian mentai, rasa pedas, dan keju. Tersedia dalam pilihan isi 4, 6, dan 8 buah.",
+    "category": "dimsum_premium",
+    "price": {
+      "4": 28000,
+      "6": 38000,
+      "8": 51000
+    }
+  },
+  {
+    "name": "Original Reguler",
+    "text": "Dimsum reguler dengan varian original dan cita rasa gurih. Tersedia dalam paket isi 5 dan 8 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "5": 20000,
+      "8": 27000
+    }
+  },
+  {
+    "name": "Mentai Reguler",
+    "text": "Dimsum reguler dengan saus mentai. Tersedia dalam paket isi 5 dan 8 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "5": 25000,
+      "8": 36000
+    }
+  },
+  {
+    "name": "Mentai Cheese Reguler",
+    "text": "Dimsum reguler dengan perpaduan saus mentai dan keju. Tersedia dalam paket isi 4 dan 6 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "4": 24000,
+      "6": 33000
+    }
+  },
+  {
+    "name": "Mentai Spicy Cheese Reguler",
+    "text": "Dimsum reguler dengan perpaduan saus mentai, rasa pedas, dan keju. Tersedia dalam paket isi 4 dan 6 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "4": 28000,
+      "6": 37000
+    }
+  },
+  {
+    "name": "Dimsum Mix Reguler",
+    "text": "Paket dimsum reguler dengan kombinasi beberapa varian dimsum. Tersedia dalam paket isi 5 dan 8 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "5": 27000,
+      "8": 38000
+    }
+  },
+  {
+    "name": "Dimsum Mozarela",
+    "text": "Dimsum reguler dengan varian keju mozzarella. Tersedia dalam paket isi 6 buah.",
+    "category": "dimsum_reguler",
+    "price": {
+      "6": 33000
+    }
+  },
+  {
+    "name": "Rela Bagi 2 Special",
+    "text": "Paket dimsum Family Series untuk dinikmati bersama. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 92000
+    }
+  },
+  {
+    "name": "Mentai Family",
+    "text": "Paket dimsum Family Series dengan varian saus mentai. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 78000
+    }
+  },
+  {
+    "name": "Original Family",
+    "text": "Paket dimsum Family Series dengan varian original. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 59000
+    }
+  },
+  {
+    "name": "Mix Family",
+    "text": "Paket dimsum Family Series dengan kombinasi beberapa varian dimsum. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 84000
+    }
+  },
+  {
+    "name": "Mentai Cheese Family",
+    "text": "Paket dimsum Family Series dengan perpaduan saus mentai dan keju. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 94000
+    }
+  },
+  {
+    "name": "Mentai Spicy Cheese Family",
+    "text": "Paket dimsum Family Series dengan perpaduan saus mentai, rasa pedas, dan keju. Tersedia dalam paket isi 16 buah.",
+    "category": "dimsum_family",
+    "price": {
+      "16": 110000
+    }
+  },
+  {
+    "name": "Dimsum Goreng Keju",
+    "text": "Dimsum goreng dengan varian keju. Termasuk dalam kategori Favorit Goreng dan tersedia dalam porsi 3 buah.",
+    "category": "favorit_goreng",
+    "price": {
+      "3": 20000
+    }
+  },
+  {
+    "name": "Dimsum Goreng Mentai",
+    "text": "Dimsum goreng dengan varian saus mentai. Termasuk dalam kategori Favorit Goreng dan tersedia dalam porsi 3 buah.",
+    "category": "favorit_goreng",
+    "price": {
+      "3": 23000
+    }
+  },
+  {
+    "name": "Ayam Keju Lumer",
+    "text": "Camilan ayam dengan varian keju lumer. Termasuk dalam kategori Favorit Goreng dan tersedia dalam porsi 3 buah.",
+    "category": "favorit_goreng",
+    "price": {
+      "3": 17000
+    }
+  },
+  {
+    "name": "Gyoza Original",
+    "text": "Gyoza dengan varian original. Termasuk dalam kategori Favorit Goreng dan tersedia dalam porsi 4 buah.",
+    "category": "favorit_goreng",
+    "price": {
+      "4": 20000
+    }
+  },
+  {
+    "name": "Gyoza Mentai",
+    "text": "Gyoza dengan varian saus mentai. Termasuk dalam kategori Favorit Goreng dan tersedia dalam porsi 4 buah.",
+    "category": "favorit_goreng",
+    "price": {
+      "4": 26000
+    }
+  },
+  {
+    "name": "Dimsum Goreng Keju Frozen",
+    "text": "Dimsum goreng varian keju dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 4 dan 9 buah.",
+    "category": "frozen_dimsum",
+    "price": {
+      "4": 26000,
+      "9": 56000
+    }
+  },
+  {
+    "name": "Ayam Keju Lumer Frozen",
+    "text": "Camilan ayam dengan varian keju lumer dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 4 dan 9 buah.",
+    "category": "frozen_dimsum",
+    "price": {
+      "4": 22000,
+      "9": 47000
+    }
+  },
+  {
+    "name": "Dimsum Original Frozen",
+    "text": "Dimsum varian original dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 10 dan 20 buah.",
+    "category": "frozen_dimsum",
+    "price": {
+      "10": 43000,
+      "20": 83000
+    }
+  },
+  {
+    "name": "Mix Dimsum Frozen",
+    "text": "Paket dimsum dengan kombinasi beberapa varian dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 9 buah.",
+    "category": "frozen_dimsum",
+    "price": {
+      "9": 49000
+    }
+  },
+  {
+    "name": "Best Seller Mix Dimsum Frozen",
+    "text": "Paket best seller berisi kombinasi beberapa varian dimsum dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 20 buah.",
+    "category": "frozen_dimsum",
+    "price": {
+      "20": 99000
+    }
+  },
+  {
+    "name": "Epok-Epok Kentang Frozen",
+    "text": "Camilan epok-epok kentang dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 12 buah.",
+    "category": "frozen_snack",
+    "price": {
+      "12": 24000
+    }
+  },
+  {
+    "name": "Risoles Frozen",
+    "text": "Camilan risoles dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 10 buah.",
+    "category": "frozen_snack",
+    "price": {
+      "10": 20000
+    }
+  },
+  {
+    "name": "Luti Gendang Frozen",
+    "text": "Camilan luti gendang dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 12 buah.",
+    "category": "frozen_snack",
+    "price": {
+      "12": 30000
+    }
+  },
+  {
+    "name": "Mpek-Mpek Campur Frozen",
+    "text": "Camilan mpek-mpek campur dalam bentuk frozen atau beku. Tersedia dalam kemasan isi 10 buah.",
+    "category": "frozen_snack",
+    "price": {
+      "10": 30000
+    }
+  }
+]
