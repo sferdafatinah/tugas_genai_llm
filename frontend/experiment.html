@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFF9EF" />
+    <title>Prompt Experiment | Dapoyumya</title>
+    <link rel="stylesheet" href="/frontend/css/style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/frontend/" class="brand">
+        <span class="brand-icon">D</span>
+        <span>Dapoyumya<span class="brand-dot">.</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/frontend/" class="nav-link">Rekomendasi Menu</a>
+        <a href="/frontend/experiment.html" class="nav-link active"
+          >Prompt Experiment</a
+        >
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <span class="eyebrow">PROMPT ENGINEERING EXPERIMENT</span>
+        <h1>Menguji prompt,<br /><span>membandingkan hasil.</span></h1>
+        <p>
+          Gunakan input yang sama untuk menguji tiga versi prompt dan amati
+          bagaimana instruksi yang berbeda memengaruhi hasil rekomendasi AI.
+        </p>
+      </section>
+
+      <section class="experiment-form-card">
+        <div class="section-heading">
+          <span class="step-label">01 — INPUT PENGUJIAN</span>
+          <h2>Tentukan kebutuhan pengguna</h2>
+          <p class="field-hint">
+            Input ini akan digunakan secara konsisten pada ketiga versi prompt.
+          </p>
+        </div>
+
+        <form id="experiment-form">
+          <div class="experiment-input-grid">
+            <div class="form-group">
+              <label for="budget">Budget</label>
+              <div class="input-with-prefix">
+                <span>Rp</span>
+                <input
+                  type="number"
+                  id="budget"
+                  min="1"
+                  placeholder="Contoh: 100000"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="people-count">Jumlah orang</label>
+              <input
+                type="number"
+                id="people-count"
+                min="1"
+                value="2"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="menu-type">Jenis menu</label>
+              <select id="menu-type">
+                <option value="bebas">Bebas</option>
+                <option value="dimsum premium">Dimsum Premium</option>
+                <option value="dimsum reguler">Dimsum Reguler</option>
+                <option value="dimsum family">Dimsum Family</option>
+                <option value="favorit goreng">Favorit Goreng</option>
+                <option value="frozen dimsum">Frozen Dimsum</option>
+                <option value="frozen snack">Frozen Snack</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Preferensi rasa</label>
+            <div class="taste-options">
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="gurih" />
+                <span>Gurih</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="pedas" />
+                <span>Pedas</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="manis" />
+                <span>Manis</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="keju" />
+                <span>Keju</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="prompt-version-heading">
+            <span class="step-label">02 — PROMPT VERSION</span>
+            <h2>Pilih versi yang ingin diuji</h2>
+          </div>
+
+          <div class="prompt-version-options">
+            <label class="prompt-version-card">
+              <input type="checkbox" name="prompt-version" value="A" checked />
+              <span class="version-letter">A</span>
+              <span class="version-name">Prompt A</span>
+              <span class="version-description">Versi instruksi pertama</span>
+            </label>
+
+            <label class="prompt-version-card">
+              <input type="checkbox" name="prompt-version" value="B" checked />
+              <span class="version-letter">B</span>
+              <span class="version-name">Prompt B</span>
+              <span class="version-description">Versi instruksi kedua</span>
+            </label>
+
+            <label class="prompt-version-card">
+              <input type="checkbox" name="prompt-version" value="C" checked />
+              <span class="version-letter">C</span>
+              <span class="version-name">Prompt C</span>
+              <span class="version-description">System prompt utama</span>
+            </label>
+          </div>
+
+          <button type="submit" id="experiment-button" class="primary-button">
+            <span>Jalankan Eksperimen</span>
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p class="privacy-note">
+            Setiap versi menggunakan input pengujian yang sama.
+          </p>
+        </form>
+      </section>
+
+      <section class="experiment-results">
+        <div class="result-heading">
+          <span class="step-label">03 — HASIL PENGUJIAN</span>
+          <h2>Perbandingan output AI</h2>
+          <p>Hasil dari setiap versi prompt akan ditampilkan di sini.</p>
+        </div>
+
+        <div id="experiment-results-container" class="experiment-empty-state">
+          <div class="empty-icon">✦</div>
+          <h3>Belum ada hasil eksperimen</h3>
+          <p>
+            Masukkan kebutuhan pengguna dan jalankan pengujian untuk melihat
+            perbandingan output.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Dapoyumya Menu Assistant</p>
+      <span>Prompt Engineering Experiment</span>
+    </footer>
+
+    <script src="/frontend/js/experiment.js"></script>
+  </body>
+</html>

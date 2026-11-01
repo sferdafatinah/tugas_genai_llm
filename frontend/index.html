@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFF9EF" />
+    <title>Dapoyumya | Menu Assistant</title>
+    <link rel="stylesheet" href="/frontend/css/style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/frontend/" class="brand">
+        <span class="brand-icon">D</span>
+        <span>Dapoyumya<span class="brand-dot">.</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/frontend/" class="nav-link active">Rekomendasi Menu</a>
+        <a href="/frontend/experiment.html" class="nav-link"
+          >Prompt Experiment</a
+        >
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <span class="eyebrow">DAPOYUMYA MENU ASSISTANT</span>
+        <h1>Temukan menu yang<br />pas dengan <span>seleramu.</span></h1>
+        <p>
+          Ceritakan kebutuhanmu, tentukan budget, dan biarkan kami membantu
+          menemukan kombinasi menu yang sesuai.
+        </p>
+      </section>
+
+      <section class="recommendation-layout">
+        <form id="recommendation-form" class="form-card">
+          <div class="section-heading">
+            <div>
+              <span class="step-label">01 — PREFERENSI</span>
+              <h2>Ceritakan kebutuhanmu</h2>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget kamu</label>
+            <div class="input-with-prefix">
+              <span>Rp</span>
+              <input
+                type="number"
+                id="budget"
+                min="1"
+                placeholder="Contoh: 100000"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="people-count">Untuk berapa orang?</label>
+            <input type="number" id="people-count" min="1" value="2" required />
+          </div>
+
+          <div class="form-group">
+            <label for="menu-type">Jenis menu</label>
+            <select id="menu-type">
+              <option value="bebas">Bebas</option>
+              <option value="dimsum premium">Dimsum Premium</option>
+              <option value="dimsum reguler">Dimsum Reguler</option>
+              <option value="dimsum family">Dimsum Family</option>
+              <option value="favorit goreng">Favorit Goreng</option>
+              <option value="frozen dimsum">Frozen Dimsum</option>
+              <option value="frozen snack">Frozen Snack</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferensi rasa</label>
+            <p class="field-hint">Pilih satu atau beberapa rasa.</p>
+
+            <div class="taste-options">
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="gurih" />
+                <span>Gurih</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="pedas" />
+                <span>Pedas</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="manis" />
+                <span>Manis</span>
+              </label>
+              <label class="taste-option">
+                <input type="checkbox" name="taste" value="keju" />
+                <span>Keju</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-button" class="primary-button">
+            <span>Buat Rekomendasi</span>
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p class="privacy-note">
+            Rekomendasi dibuat berdasarkan katalog menu Dapoyumya.
+          </p>
+        </form>
+
+        <section class="result-section" aria-live="polite">
+          <div class="result-heading">
+            <span class="step-label">02 — HASIL</span>
+            <h2>Rekomendasi untukmu</h2>
+            <p>Hasil rekomendasi akan muncul di sini.</p>
+          </div>
+
+          <div id="result-container" class="empty-state">
+            <div class="empty-icon">✦</div>
+            <h3>Belum ada rekomendasi</h3>
+            <p>
+              Isi kebutuhanmu di samping untuk menemukan kombinasi menu yang
+              sesuai.
+            </p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Dapoyumya Menu Assistant</p>
+      <span>Made with appetite.</span>
+    </footer>
+
+    <script src="/frontend/js/app.js"></script>
+  </body>
+</html>

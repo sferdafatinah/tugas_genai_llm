@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from groq import AsyncGroq
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -24,6 +25,12 @@ app = FastAPI(
     
     description="API rekomendasi kombinasi menu Dapoyumya berdasarkan kebutuhan pelanggan.",
     version="1.0.0"
+)
+
+app.mount(
+    "/frontend",
+    StaticFiles(directory="frontend", html=True),
+    name="frontend"
 )
 
 @app.get("/")

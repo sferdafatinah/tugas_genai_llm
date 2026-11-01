@@ -39,6 +39,7 @@ Melalui proyek ini, saya ingin:
 6. Menghasilkan respons terstruktur dalam format JSON.
 7. Menggabungkan kemampuan LLM dengan validasi data dan perhitungan menggunakan Python.
 8. Membandingkan hasil dari beberapa versi prompt untuk mengetahui pengaruh instruksi terhadap jawaban yang dihasilkan.
+9. Mengembangkan antarmuka web agar pengguna dapat berinteraksi dengan aplikasi melalui halaman rekomendasi dan eksperimen prompt.
 
 ---
 
@@ -55,6 +56,9 @@ Saya menggunakan beberapa teknologi berikut untuk membangun aplikasi.
 | Pydantic              | Memvalidasi struktur dan nilai input yang diterima oleh API.                                               |
 | `python-dotenv`       | Membaca API key dari file `.env` agar informasi rahasia tidak ditulis langsung di dalam kode.              |
 | JSON                  | Format penyimpanan katalog produk Dapoyumya.                                                               |
+| HTML                  | Membuat struktur halaman web untuk aplikasi rekomendasi dan eksperimen prompt.                             |
+| CSS                   | Mengatur tampilan, tata letak, warna, dan desain antarmuka web.                                            |
+| JavaScript            | Mengelola interaksi pengguna, mengirim request ke backend, dan menampilkan hasil API pada halaman web.     |
 | Swagger UI            | Antarmuka dokumentasi dan pengujian endpoint API.                                                          |
 
 ### A. Dataset
@@ -228,6 +232,15 @@ tugas_genAI_LLM/
 │   ├── menu_data.py
 │   └── menu_data.json
 │
+├── frontend/
+│   ├── index.html
+│   ├── experiment.html
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       ├── app.js
+│       └── experiment.js
+│
 ├── .env
 ├── .gitignore
 ├── requirements.txt
@@ -238,12 +251,18 @@ tugas_genAI_LLM/
 
 | File/Folder        | Fungsi                                                                                                                      |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `app/`             | Menyimpan seluruh file kode dan data yang digunakan oleh aplikasi.                                                          |
+| `app/`             | Menyimpan seluruh file kode backend dan data yang digunakan oleh aplikasi.                                                  |
 | `__init__.py`      | Menandai folder `app` sebagai package Python.                                                                               |
 | `main.py`          | Mengatur aplikasi FastAPI, menerima request, memanggil Groq API, dan menyediakan endpoint `/recommend` serta `/experiment`. |
 | `prompts.py`       | Menyimpan system prompt utama atau Prompt C, serta Prompt A dan Prompt B untuk eksperimen.                                  |
 | `menu_data.py`     | Membaca katalog, mencari produk, memvalidasi nama dan ukuran paket, serta menghitung harga.                                 |
 | `menu_data.json`   | Menyimpan 31 data produk Dapoyumya beserta deskripsi, kategori, dan harga.                                                  |
+| `frontend/`        | Menyimpan seluruh file antarmuka web aplikasi.                                                                              |
+| `index.html`       | Menampilkan halaman utama untuk memasukkan kebutuhan dan memperoleh rekomendasi menu.                                       |
+| `experiment.html`  | Menampilkan halaman untuk menguji dan membandingkan Prompt A, Prompt B, dan Prompt C.                                       |
+| `css/style.css`    | Mengatur tampilan, warna, tata letak, dan komponen antarmuka web.                                                           |
+| `js/app.js`        | Mengatur interaksi halaman rekomendasi dan mengirim input ke endpoint `/recommend`.                                         |
+| `js/experiment.js` | Mengatur pengujian prompt dan menampilkan hasil dari endpoint `/experiment`.                                                |
 | `.env`             | Menyimpan API key Groq yang digunakan aplikasi secara lokal.                                                                |
 | `.gitignore`       | Menentukan file dan folder yang tidak perlu diunggah ke GitHub.                                                             |
 | `requirements.txt` | Menyimpan daftar library Python yang dibutuhkan untuk menjalankan aplikasi.                                                 |
@@ -253,7 +272,40 @@ Folder `.venv/` juga digunakan ketika mengembangkan aplikasi di komputer lokal, 
 
 ---
 
-## 5. Installation and Setup
+## 5. Frontend Application
+
+Selain menyediakan backend API menggunakan FastAPI, saya juga mengembangkan antarmuka web (_frontend_) agar pengguna dapat berinteraksi dengan aplikasi secara lebih mudah.
+
+Frontend dibuat menggunakan HTML, CSS, dan JavaScript dengan desain minimalis yang mengadaptasi identitas warna Dapoyumya, yaitu merah, oranye, kuning, dan krem.
+
+### A. Halaman Rekomendasi Menu
+
+<text>Halaman utama memungkinkan pengguna memasukkan kebutuhan berupa anggaran, jumlah orang, preferensi rasa, dan jenis menu. Setelah pengguna mengirimkan input, JavaScript mengirimkan data tersebut ke endpoint `POST /recommend`.</text>
+
+Selanjutnya, hasil rekomendasi dari backend ditampilkan pada halaman, termasuk daftar menu, perkiraan total harga, status anggaran, alasan rekomendasi, dan pilihan alternatif.
+
+### B. Halaman Prompt Experiment
+
+Halaman ini digunakan untuk menguji tiga versi prompt, yaitu Prompt A, Prompt B, dan Prompt C.
+
+Pengguna dapat memasukkan kebutuhan yang sama dan memilih versi prompt yang ingin diuji. JavaScript kemudian mengirimkan input tersebut ke endpoint `POST /experiment` sesuai versi yang dipilih.
+
+Hasil dari setiap versi prompt ditampilkan pada halaman agar pengguna dapat membandingkan respons yang dihasilkan oleh LLM.
+
+### C. Integrasi Frontend dan Backend
+
+Frontend berkomunikasi dengan backend melalui endpoint FastAPI menggunakan HTTP request dengan metode POST.
+
+| Halaman           | Endpoint      | Fungsi                                                                      |
+| ----------------- | ------------- | --------------------------------------------------------------------------- |
+| Rekomendasi Menu  | `/recommend`  | Mengirim kebutuhan pelanggan dan menerima hasil rekomendasi.                |
+| Prompt Experiment | `/experiment` | Mengirim input pengujian dan menerima hasil dari versi prompt yang dipilih. |
+
+Dengan adanya frontend, pengguna tidak harus memasukkan request secara manual melalui Swagger UI. Mereka dapat menggunakan antarmuka web untuk mengisi kebutuhan, menjalankan rekomendasi, dan membandingkan hasil eksperimen prompt.
+
+---
+
+## 6. Installation and Setup
 
 Bagian ini menjelaskan langkah-langkah yang saya gunakan untuk menyiapkan dan menjalankan aplikasi.
 
@@ -335,17 +387,33 @@ fastapi dev app/main.py
 
 Jika aplikasi berhasil berjalan, FastAPI akan menampilkan alamat server lokal.
 
-Buka dokumentasi API melalui browser:
+### F. Mengakses Aplikasi
+
+Setelah server berjalan, aplikasi dapat diakses melalui beberapa alamat berikut.
+
+**Halaman Rekomendasi Menu:**
+
+```text
+http://127.0.0.1:8000/frontend/
+```
+
+**Halaman Prompt Experiment:**
+
+```text
+http://127.0.0.1:8000/frontend/experiment.html
+```
+
+**Dokumentasi API (Swagger UI):**
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Swagger UI digunakan untuk melihat endpoint yang tersedia, memasukkan request body, menjalankan pengujian, dan melihat respons JSON dari aplikasi.
+Halaman rekomendasi digunakan untuk memasukkan kebutuhan pelanggan dan melihat hasil rekomendasi menu. Halaman Prompt Experiment digunakan untuk membandingkan hasil dari tiga versi prompt. Sementara itu, Swagger UI digunakan untuk melihat dokumentasi endpoint dan melakukan pengujian API secara langsung.
 
 ---
 
-## 6. API Endpoint
+## 7. API Endpoint
 
 Saya menyediakan dua endpoint utama untuk menjalankan aplikasi dan melakukan eksperimen prompt engineering.
 
@@ -400,7 +468,7 @@ Pengujian ini dilakukan melalui endpoint `/experiment`, sehingga hasilnya dapat 
 
 ---
 
-## 7. Example Request and Response
+## 8. Example Request and Response
 
 Pada bagian ini, saya menggunakan hasil pengujian endpoint `/recommend` untuk menunjukkan bagaimana aplikasi menerima kebutuhan pelanggan dan mengembalikan rekomendasi menu.
 
@@ -506,7 +574,7 @@ Contoh ini memperlihatkan bahwa aplikasi tidak hanya menampilkan rekomendasi dar
 
 ---
 
-## 8. Structured Output
+## 9. Structured Output
 
 Saya menggunakan structured output dalam format JSON agar hasil yang diberikan LLM memiliki susunan data yang lebih teratur dan dapat diproses kembali oleh Python.
 
@@ -581,7 +649,7 @@ Saya juga memisahkan proses pemberian rekomendasi dengan proses perhitungan harg
 
 ---
 
-## 9. Prompt Engineering Experiment
+## 10. Prompt Engineering Experiment
 
 Pada proyek ini, saya melakukan eksperimen prompt engineering untuk mengetahui bagaimana perbedaan instruksi dapat memengaruhi hasil rekomendasi yang diberikan oleh LLM.
 
@@ -887,7 +955,7 @@ Oleh karena itu, validasi menggunakan Python tetap diperlukan.
 
 ---
 
-## 10. Prompt Evaluation
+## 11. Prompt Evaluation
 
 Setelah menjalankan ketiga versi prompt menggunakan input yang sama, saya membandingkan hasilnya berdasarkan struktur output, kelengkapan informasi, dan kesesuaian jawaban dengan kebutuhan aplikasi.
 
@@ -930,7 +998,7 @@ Oleh karena itu, prompt engineering perlu didukung dengan validasi tambahan pada
 
 ---
 
-## 11. Failure Case
+## 12. Failure Case
 
 Pada bagian ini, saya menguji kondisi ketika pelanggan memasukkan anggaran yang terlalu rendah untuk membeli produk sesuai kategori dan preferensi yang diinginkan.
 
@@ -1047,7 +1115,7 @@ Jika aplikasi dikembangkan lebih lanjut, saran penyesuaian anggaran dapat dibuat
 
 ---
 
-## 12. Personal Reflection
+## 13. Personal Reflection
 
 ### 1. Menurut kalian, bagian apa yang paling sulit dari project ini?
 
@@ -1103,7 +1171,7 @@ Saya juga ingin menambahkan validasi output yang lebih ketat agar rekomendasi be
 
 ---
 
-## 13. AI Usage
+## 14. AI Usage
 
 ### A. AI Tools yang Digunakan
 
@@ -1131,7 +1199,7 @@ Seluruh hasil pengujian tersebut saya gunakan sebagai dasar untuk menyusun anali
 
 ---
 
-## 14. Conclusion
+## 15. Conclusion
 
 Melalui proyek ini, saya berhasil membangun aplikasi Dapoyumya Menu Recommendation Assistant menggunakan Python, FastAPI, Groq API, dan model `openai/gpt-oss-120b`.
 
@@ -1139,6 +1207,8 @@ Aplikasi dapat menerima kebutuhan pelanggan berupa anggaran, jumlah orang, prefe
 
 Saya juga menerapkan validasi menggunakan Python untuk memeriksa nama produk, ukuran paket, dan jumlah pembelian. Harga produk diambil dari katalog, kemudian Python menghitung subtotal dan total harga serta menentukan status kesesuaian anggaran.
 
+Selain backend API, saya mengembangkan frontend menggunakan HTML, CSS, dan JavaScript. Frontend menyediakan halaman rekomendasi menu dan halaman eksperimen prompt sehingga pengguna dapat berinteraksi dengan aplikasi melalui antarmuka web.
+
 Melalui eksperimen prompt engineering, saya menemukan bahwa Prompt C menghasilkan struktur jawaban yang paling sesuai dengan kebutuhan aplikasi dibandingkan Prompt A dan Prompt B. Namun, pengujian failure case menunjukkan bahwa model masih dapat mengabaikan sebagian instruksi meskipun sudah diberikan constraint yang lebih lengkap.
 
-Dari proses pengerjaan ini, saya memahami bahwa membangun aplikasi Generative AI tidak hanya sebatas menghubungkan program dengan LLM. Saya juga perlu memperhatikan penyusunan prompt, validasi input dan output, pengelolaan data, penanganan kesalahan, serta evaluasi hasil agar aplikasi dapat memberikan respons yang sesuai dengan kebutuhan pengguna.
+Dari proses pengerjaan ini, saya memahami bahwa membangun aplikasi Generative AI tidak hanya sebatas menghubungkan program dengan LLM. Saya juga perlu memperhatikan penyusunan prompt, validasi input dan output, pengelolaan data, penanganan kesalahan, pengembangan antarmuka, serta evaluasi hasil agar aplikasi dapat memberikan respons yang sesuai dengan kebutuhan pengguna.
