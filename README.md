@@ -17,13 +17,13 @@
 
 ### Deskripsi Singkat
 
-Dapoyumya Menu Recommendation Assistant merupakan aplikasi berbasis Generative AI yang saya kembangkan untuk membantu pelanggan UMKM Dapoyumya dalam menentukan kombinasi menu makanan sesuai kebutuhan mereka. Dapoyumya merupakan UMKM di bidang kuliner yang menawarkan berbagai produk makanan, terutama dimsum dan camilan, dengan pilihan varian rasa, kategori, serta ukuran paket yang beragam.
+Dapoyumya Menu Recommendation Assistant merupakan aplikasi berbasis Generative AI yang saya kembangkan untuk membantu pelanggan UMKM Dapoyumya menentukan kombinasi menu makanan sesuai kebutuhan mereka. Dapoyumya merupakan UMKM di bidang kuliner yang menawarkan berbagai produk makanan, terutama dimsum dan camilan, dengan pilihan varian rasa, kategori, serta ukuran paket yang beragam.
 
-Dalam proses pemesanan, pelanggan dapat memiliki kebutuhan yang berbeda-beda. Ada pelanggan yang ingin membeli makanan dengan budget tertentu, mencari kombinasi rasa, atau memilih menu untuk dinikmati bersama beberapa orang. Oleh karena itu, saya membuat aplikasi ini agar pelanggan dapat menyampaikan kebutuhannya melalui beberapa informasi, yaitu budget, jumlah orang, preferensi rasa, dan jenis menu yang diinginkan.
+Setiap pelanggan dapat memiliki kebutuhan yang berbeda. Ada pelanggan yang ingin membeli makanan dengan anggaran tertentu, mencari kombinasi rasa, atau memilih menu untuk dinikmati bersama beberapa orang. Oleh karena itu, saya membuat aplikasi ini agar pelanggan dapat menyampaikan kebutuhannya melalui beberapa informasi, yaitu anggaran, jumlah orang, preferensi rasa, dan jenis menu yang diinginkan.
 
-Aplikasi menggunakan Large Language Model (LLM) melalui Groq API untuk memahami kebutuhan pelanggan dan menyusun rekomendasi kombinasi menu berdasarkan katalog produk Dapoyumya. Dengan bantuan LLM, sistem dapat memberikan rekomendasi dalam bentuk yang lebih fleksibel dibandingkan pencarian berdasarkan nama produk saja.
+Aplikasi ini menggunakan Large Language Model (LLM) melalui Groq API untuk memahami kebutuhan pelanggan dan menyusun rekomendasi kombinasi menu berdasarkan katalog produk Dapoyumya. Dengan bantuan LLM, sistem dapat memberikan rekomendasi berdasarkan kebutuhan yang disampaikan menggunakan bahasa alami, bukan hanya melalui pencarian nama produk.
 
-Namun, saya tidak sepenuhnya menyerahkan informasi produk dan perhitungan harga kepada AI. Saya menggunakan Python untuk memeriksa kembali nama produk, ukuran paket, dan jumlah pembelian berdasarkan katalog asli. Setelah itu, Python mengambil harga dari katalog dan menghitung subtotal serta total harga setiap kombinasi menu.
+Namun, saya tidak sepenuhnya menyerahkan informasi produk dan perhitungan harga kepada AI. Saya menggunakan Python untuk memeriksa kembali nama produk, ukuran paket, dan jumlah pembelian berdasarkan katalog asli. Selanjutnya, Python mengambil harga dari katalog dan menghitung subtotal serta total harga setiap kombinasi menu.
 
 Dengan demikian, AI bertugas memahami kebutuhan pelanggan dan menyusun rekomendasi, sedangkan Python bertugas memastikan bahwa produk dan perhitungan harga yang ditampilkan sesuai dengan data yang tersedia.
 
@@ -46,16 +46,16 @@ Melalui proyek ini, saya ingin:
 
 Saya menggunakan beberapa teknologi berikut untuk membangun aplikasi.
 
-| Teknologi             | Fungsi                                                                                         |
-| --------------------- | ---------------------------------------------------------------------------------------------- |
-| Python                | Bahasa pemrograman utama untuk mengatur proses aplikasi, validasi data, dan perhitungan harga. |
-| FastAPI               | Framework untuk membangun REST API yang menerima input dan mengembalikan hasil rekomendasi.    |
-| Groq API              | Layanan API yang menghubungkan aplikasi dengan model LLM.                                      |
-| `openai/gpt-oss-120b` | Model LLM yang digunakan untuk memahami kebutuhan pelanggan dan menghasilkan rekomendasi.      |
-| Pydantic              | Memvalidasi struktur dan nilai input yang diterima oleh API.                                   |
-| `python-dotenv`       | Membaca API key dari file `.env` agar informasi rahasia tidak ditulis langsung di dalam kode.  |
-| JSON                  | Format penyimpanan katalog produk Dapoyumya.                                                   |
-| Swagger UI            | Antarmuka dokumentasi dan pengujian endpoint API.                                              |
+| Teknologi             | Fungsi                                                                                                     |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Python                | Bahasa pemrograman utama untuk mengatur proses aplikasi, validasi data, dan perhitungan harga.             |
+| FastAPI               | Framework untuk membangun REST API yang menerima input dan mengembalikan hasil rekomendasi.                |
+| Groq API              | Layanan API yang menghubungkan aplikasi dengan model LLM.                                                  |
+| `openai/gpt-oss-120b` | Model LLM yang digunakan untuk memahami kebutuhan pelanggan dan menghasilkan rekomendasi melalui Groq API. |
+| Pydantic              | Memvalidasi struktur dan nilai input yang diterima oleh API.                                               |
+| `python-dotenv`       | Membaca API key dari file `.env` agar informasi rahasia tidak ditulis langsung di dalam kode.              |
+| JSON                  | Format penyimpanan katalog produk Dapoyumya.                                                               |
+| Swagger UI            | Antarmuka dokumentasi dan pengujian endpoint API.                                                          |
 
 ### A. Dataset
 
@@ -85,11 +85,11 @@ Dengan menggunakan katalog sebagai sumber informasi, saya berusaha mengurangi ke
 
 ### B. Alasan Pemilihan Dataset
 
-Saya menggunakan produk Dapoyumya karena variasi produknya memungkinkan saya menguji beberapa kebutuhan pelanggan. Contohnya, pelanggan dapat mencari dimsum dengan rasa pedas, memilih paket untuk keluarga, atau mencari camilan yang dapat disimpan dalam kondisi beku.
+Saya memilih produk Dapoyumya karena variasi produknya memungkinkan saya menguji beberapa kebutuhan pelanggan. Contohnya, pelanggan dapat mencari dimsum dengan rasa pedas, memilih paket untuk keluarga, atau mencari camilan yang dapat disimpan dalam kondisi beku.
 
 Dataset ini juga dapat digunakan untuk menguji kondisi ketika kebutuhan pelanggan tidak tersedia dalam katalog. Misalnya, ketika pelanggan meminta minuman kopi susu, sedangkan data yang saya gunakan hanya berisi produk makanan.
 
-Dengan beberapa kondisi tersebut, saya dapat mengamati apakah aplikasi mampu memberikan rekomendasi yang sesuai dan bagaimana sistem merespons ketika kebutuhan pelanggan tidak dapat dipenuhi.
+Melalui beberapa kondisi tersebut, saya dapat mengamati apakah aplikasi mampu memberikan rekomendasi yang sesuai dan bagaimana sistem merespons ketika kebutuhan pelanggan tidak dapat dipenuhi.
 
 ---
 
@@ -103,15 +103,15 @@ Berikut tahapan yang terjadi ketika pelanggan mengirimkan permintaan rekomendasi
 
 1. **User Input**
 
-   Pengguna memasukkan kebutuhan menu berupa budget, jumlah orang, preferensi rasa, dan jenis menu yang diinginkan.
+   Pengguna memasukkan kebutuhan menu berupa anggaran, jumlah orang, preferensi rasa, dan jenis menu yang diinginkan.
 
 2. **FastAPI menerima request**
 
-   FastAPI menerima data yang dikirim pengguna melalui endpoint `POST /recommend`.
+   FastAPI menerima data yang dikirimkan pengguna melalui endpoint `POST /recommend`.
 
 3. **Pydantic Validation**
 
-   Sebelum diproses lebih lanjut, Pydantic memeriksa struktur input dan nilai yang diberikan. Contohnya, budget dan jumlah orang harus berupa angka yang lebih besar dari nol.
+   Sebelum diproses lebih lanjut, Pydantic memeriksa struktur input dan nilai yang diberikan. Contohnya, anggaran dan jumlah orang harus berupa angka yang lebih besar dari nol.
 
 4. **Load Dataset**
 
@@ -123,11 +123,11 @@ Berikut tahapan yang terjadi ketika pelanggan mengirimkan permintaan rekomendasi
 
 6. **Generate Structured Output**
 
-   LLM menghasilkan rekomendasi dalam format JSON sesuai struktur yang telah ditentukan dalam system prompt.
+   LLM menghasilkan rekomendasi dalam format JSON sesuai struktur yang ditentukan dalam system prompt.
 
 7. **Python Validation**
 
-   Setelah menerima hasil dari LLM, Python memeriksa kembali nama produk, ukuran paket, dan jumlah pembelian. Produk yang tidak ditemukan dalam katalog atau menggunakan ukuran paket yang tidak tersedia tidak dimasukkan ke dalam hasil validasi.
+   Setelah menerima hasil dari LLM, Python memeriksa kembali nama produk, ukuran paket, dan jumlah pembelian. Produk yang tidak ditemukan dalam katalog, menggunakan ukuran paket yang tidak tersedia, atau memiliki jumlah pembelian yang tidak valid tidak dimasukkan ke dalam hasil validasi.
 
 8. **Price Calculation**
 
@@ -135,11 +135,11 @@ Berikut tahapan yang terjadi ketika pelanggan mengirimkan permintaan rekomendasi
 
 9. **Budget Validation**
 
-   Python membandingkan total harga hasil perhitungan dengan budget pelanggan. Berdasarkan hasil tersebut, aplikasi menentukan status kesesuaian budget.
+   Python membandingkan total harga hasil perhitungan dengan anggaran pelanggan. Berdasarkan hasil tersebut, aplikasi menentukan status kesesuaian anggaran.
 
 10. **API Response**
 
-    Aplikasi mengembalikan hasil rekomendasi yang telah diproses, termasuk daftar menu, total harga, status budget, alasan rekomendasi, dan pilihan alternatif.
+    Aplikasi mengembalikan hasil rekomendasi yang telah diproses, termasuk daftar menu, total harga, status anggaran, alasan rekomendasi, dan pilihan alternatif.
 
 ### B. Pembagian Tugas AI dan Python
 
@@ -149,7 +149,7 @@ Dalam proyek ini, saya membagi pekerjaan antara AI dan Python agar masing-masing
 
 AI digunakan untuk memahami kebutuhan pelanggan dan menyusun rekomendasi. Tugasnya meliputi:
 
-- Memahami budget, jumlah orang, preferensi rasa, dan jenis menu yang diminta.
+- Memahami anggaran, jumlah orang, preferensi rasa, dan jenis menu yang diminta.
 - Memilih produk berdasarkan informasi dalam katalog.
 - Menyusun kombinasi menu rekomendasi.
 - Memberikan alasan pemilihan menu.
@@ -166,7 +166,7 @@ Python digunakan untuk mengolah dan memeriksa hasil yang diberikan AI. Tugasnya 
 - Memeriksa jumlah pembelian.
 - Mengambil harga asli dari katalog.
 - Menghitung subtotal dan total harga.
-- Menentukan status kesesuaian budget.
+- Menentukan status kesesuaian anggaran.
 
 Pembagian ini penting karena LLM dapat memahami kebutuhan pengguna dan menyusun jawaban secara fleksibel, tetapi informasi harga tetap perlu diambil dari sumber data yang jelas. Oleh karena itu, saya menggunakan Python untuk melakukan validasi dan perhitungan agar hasil akhir tidak hanya bergantung pada perkiraan model.
 
@@ -177,7 +177,7 @@ Pengguna
    |
    v
 Mengisi kebutuhan menu
-(Budget, Jumlah Orang, Preferensi Rasa, Jenis Menu)
+(Anggaran, Jumlah Orang, Preferensi Rasa, Jenis Menu)
    |
    v
 POST /recommend
@@ -205,7 +205,7 @@ Mengambil Harga dan Menghitung Total
 (Python)
    |
    v
-Memeriksa Kesesuaian Budget
+Memeriksa Kesesuaian Anggaran
    |
    v
 Mengembalikan Hasil Rekomendasi
@@ -362,7 +362,7 @@ Endpoint ini merupakan fitur utama aplikasi. Pengguna mengirimkan kebutuhan menu
 
 | Parameter           | Tipe Data      | Keterangan                                                                  |
 | ------------------- | -------------- | --------------------------------------------------------------------------- |
-| `budget`            | Integer        | Budget pelanggan dalam rupiah. Nilainya harus lebih besar dari nol.         |
+| `budget`            | Integer        | Anggaran pelanggan dalam rupiah. Nilainya harus lebih besar dari nol.       |
 | `people_count`      | Integer        | Jumlah orang yang akan menikmati menu. Nilainya harus lebih besar dari nol. |
 | `taste_preferences` | List of String | Daftar preferensi rasa yang diinginkan pelanggan.                           |
 | `menu_type`         | String         | Jenis atau kategori menu yang diinginkan pelanggan.                         |
@@ -378,7 +378,7 @@ Contoh request:
 }
 ```
 
-Pada contoh tersebut, pelanggan memiliki budget Rp100.000, kebutuhan untuk tiga orang, menyukai rasa gurih dan pedas, serta menginginkan menu dari kategori dimsum premium.
+Pada contoh tersebut, pelanggan memiliki anggaran Rp100.000, membutuhkan menu untuk tiga orang, menyukai rasa gurih dan pedas, serta menginginkan menu dari kategori dimsum premium.
 
 Setelah request diterima, sistem memproses kebutuhan tersebut melalui LLM dan melakukan validasi kembali menggunakan Python.
 
@@ -417,13 +417,13 @@ Berikut input yang saya gunakan dalam pengujian:
 }
 ```
 
-Saya menggunakan input tersebut untuk menguji apakah aplikasi dapat memberikan kombinasi menu dengan rasa gurih dan pedas, sesuai kategori yang diminta, serta tetap mempertimbangkan budget pelanggan.
+Saya menggunakan input tersebut untuk menguji apakah aplikasi dapat memberikan kombinasi menu dengan rasa gurih dan pedas, sesuai kategori yang diminta, serta tetap mempertimbangkan anggaran pelanggan.
 
 ### B. Example Response
 
 Salah satu hasil pengujian menghasilkan rekomendasi utama berupa Original Premium ukuran 8 dan Mentai Spicy ukuran 8.
 
-Berikut data menu dan perhitungan harga yang tercatat pada hasil pengujian:
+Berikut contoh struktur respons API berdasarkan hasil pengujian dan perhitungan harga yang tercatat:
 
 ```json
 {
@@ -445,7 +445,7 @@ Berikut data menu dan perhitungan harga yang tercatat pada hasil pengujian:
   ],
   "estimated_total": 87000,
   "budget_status": "within budget",
-  "recommendation_reason": "GANTI DENGAN ALASAN DARI RESPONS SWAGGER UI",
+  "recommendation_reason": "Kombinasi ini mencakup Original Premium dengan rasa gurih dan Mentai Spicy dengan rasa pedas, sesuai dengan preferensi pelanggan.",
   "alternatives": [
     {
       "menus": [
@@ -465,7 +465,7 @@ Berikut data menu dan perhitungan harga yang tercatat pada hasil pengujian:
         }
       ],
       "estimated_total": 74000,
-      "reason": "GANTI DENGAN ALASAN ALTERNATIF PERTAMA DARI RESPONS SWAGGER UI"
+      "reason": "Alternatif ini menggabungkan rasa gurih dan pedas dengan total harga yang lebih rendah dibandingkan rekomendasi utama."
     },
     {
       "menus": [
@@ -485,22 +485,22 @@ Berikut data menu dan perhitungan harga yang tercatat pada hasil pengujian:
         }
       ],
       "estimated_total": 78000,
-      "reason": "GANTI DENGAN ALASAN ALTERNATIF KEDUA DARI RESPONS SWAGGER UI"
+      "reason": "Alternatif ini menggabungkan variasi rasa mentai, pedas, dan keju dengan rasa gurih dari Original Premium."
     }
   ]
 }
 ```
 
-**Catatan sebelum pengumpulan:** Tiga bagian yang diawali dengan `GANTI DENGAN` bukan output asli dan wajib diganti menggunakan kalimat yang benar-benar muncul pada respons Swagger UI. Jangan membiarkan teks tersebut dalam README yang dikumpulkan.
+**Catatan:** Struktur dan angka di atas mengikuti data pengujian yang tercatat. Kalimat alasan rekomendasi merupakan penjelasan yang disusun berdasarkan karakteristik menu, bukan kutipan yang telah diverifikasi dari respons asli Swagger UI. Jika bagian ini ingin ditampilkan sebagai _actual output_, ganti ketiga nilai alasan tersebut dengan teks persis dari respons API yang sebenarnya.
 
 Berdasarkan angka pada contoh, perhitungan rekomendasi utama adalah:
 
 - Original Premium: Rp36.000 × 1 paket = Rp36.000.
 - Mentai Spicy: Rp51.000 × 1 paket = Rp51.000.
 - Total: Rp36.000 + Rp51.000 = **Rp87.000**.
-- Sisa budget: Rp100.000 − Rp87.000 = **Rp13.000**.
+- Sisa anggaran: Rp100.000 − Rp87.000 = **Rp13.000**.
 
-Karena total harga lebih kecil daripada budget pelanggan, Python menetapkan status `within budget`.
+Karena total harga lebih kecil daripada anggaran pelanggan, Python menetapkan status `within budget`.
 
 Contoh ini memperlihatkan bahwa aplikasi tidak hanya menampilkan rekomendasi dari AI, tetapi juga memeriksa harga dan menghitung total berdasarkan katalog.
 
@@ -549,13 +549,13 @@ LLM hanya diminta memberikan nama produk, ukuran paket, jumlah pembelian, dan al
 
 Setelah hasil dari LLM diterima dan diproses oleh Python, respons API memiliki beberapa field tambahan.
 
-| Field                   | Fungsi                                                                                         |
-| ----------------------- | ---------------------------------------------------------------------------------------------- |
-| `recommended_menus`     | Menyimpan daftar menu rekomendasi utama yang telah divalidasi.                                 |
-| `estimated_total`       | Menampilkan total harga rekomendasi utama berdasarkan perhitungan Python.                      |
-| `budget_status`         | Menunjukkan apakah rekomendasi sesuai budget atau tidak tersedia menu yang memenuhi kebutuhan. |
-| `recommendation_reason` | Menjelaskan alasan pemilihan menu.                                                             |
-| `alternatives`          | Menyimpan kombinasi menu alternatif beserta total harga dan alasannya.                         |
+| Field                   | Fungsi                                                                                           |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| `recommended_menus`     | Menyimpan daftar menu rekomendasi utama yang telah divalidasi.                                   |
+| `estimated_total`       | Menampilkan total harga rekomendasi utama berdasarkan perhitungan Python.                        |
+| `budget_status`         | Menunjukkan apakah rekomendasi sesuai anggaran atau tidak tersedia menu yang memenuhi kebutuhan. |
+| `recommendation_reason` | Menjelaskan alasan pemilihan menu.                                                               |
+| `alternatives`          | Menyimpan kombinasi menu alternatif beserta total harga dan alasannya.                           |
 
 Setiap item menu pada hasil akhir memiliki field berikut:
 
@@ -575,7 +575,7 @@ Field `recommended_menus` digunakan untuk menampilkan kombinasi utama yang disar
 
 Field `recommendation_reason` digunakan untuk menjelaskan alasan pemilihan menu, sehingga pelanggan dapat memahami hubungan antara produk yang direkomendasikan dan preferensi yang dimasukkan.
 
-Selanjutnya, `estimated_total` dan `budget_status` digunakan untuk membantu pelanggan mengetahui perkiraan biaya dan kesesuaiannya dengan budget.
+Selanjutnya, `estimated_total` dan `budget_status` digunakan untuk membantu pelanggan mengetahui perkiraan biaya dan kesesuaiannya dengan anggaran.
 
 Saya juga memisahkan proses pemberian rekomendasi dengan proses perhitungan harga. LLM memberikan nama produk, ukuran, dan jumlah paket, sedangkan Python mengambil harga dari katalog dan menghitung totalnya. Dengan cara ini, aplikasi tidak hanya mengandalkan angka yang dihasilkan AI.
 
@@ -604,7 +604,7 @@ Ketiga versi diuji menggunakan input pelanggan yang sama agar hasilnya dapat dib
 }
 ```
 
-Saya menggunakan input tersebut karena memuat beberapa kebutuhan sekaligus. Dengan demikian, saya dapat melihat apakah model memperhatikan budget, jumlah orang, preferensi rasa, dan jenis menu yang diminta.
+Saya menggunakan input tersebut karena memuat beberapa kebutuhan sekaligus. Dengan demikian, saya dapat melihat apakah model memperhatikan anggaran, jumlah orang, preferensi rasa, dan jenis menu yang diminta.
 
 ### B. Prompt A — Simple Prompt
 
@@ -657,7 +657,7 @@ Prompt A merupakan instruksi paling sederhana yang saya gunakan. Saya hanya menj
 
 **Observation**
 
-Pada Prompt A, model dapat memberikan beberapa pilihan menu berdasarkan kebutuhan pelanggan. Model juga memberikan informasi budget, total biaya, sisa anggaran, dan jumlah produk.
+Pada Prompt A, model dapat memberikan beberapa pilihan menu berdasarkan kebutuhan pelanggan. Model juga memberikan informasi anggaran, total biaya, sisa anggaran, dan jumlah produk.
 
 Namun, struktur JSON yang dihasilkan belum sesuai dengan struktur yang saya rencanakan untuk aplikasi. Contohnya, model menggunakan field `recommendations`, `total_cost`, dan `notes`, sedangkan aplikasi saya menggunakan `recommended_menus`, `estimated_total`, dan `recommendation_reason`.
 
@@ -683,7 +683,7 @@ nama produk, deskripsi, kategori, dan pilihan harga.
 Gunakan katalog tersebut untuk membantu memberikan rekomendasi.
 ```
 
-Pada Prompt B, saya mulai menambahkan tiga komponen instruksi.
+Pada Prompt B, saya mulai menambahkan tiga komponen instruksi:
 
 - **Role:** Menentukan peran model sebagai asisten rekomendasi menu Dapoyumya.
 - **Task:** Menjelaskan pekerjaan yang harus dilakukan model.
@@ -879,9 +879,11 @@ Pada Prompt C, struktur JSON yang dihasilkan sudah paling mendekati format yang 
 
 Dibandingkan Prompt A dan Prompt B, Prompt C memberikan instruksi yang lebih lengkap. Saya tidak hanya menjelaskan peran, tugas, dan konteks, tetapi juga menambahkan batasan agar model tidak mengarang produk, harga, atau informasi yang tidak tersedia dalam katalog.
 
-Namun, hasilnya belum sepenuhnya mengikuti seluruh instruksi. Contohnya, model masih menggunakan perkiraan mengenai kesesuaian budget dalam alasan rekomendasi, padahal perhitungan harga seharusnya dilakukan oleh Python.
+Namun, hasilnya belum sepenuhnya mengikuti seluruh instruksi. Contohnya, model masih menggunakan perkiraan mengenai kesesuaian anggaran dalam alasan rekomendasi, padahal perhitungan harga seharusnya dilakukan oleh Python.
 
-Hal ini menunjukkan bahwa prompt yang lebih lengkap dapat membantu mengarahkan model, tetapi tidak menjamin model selalu mengikuti setiap instruksi. Oleh karena itu, validasi menggunakan Python tetap diperlukan.
+Selain itu, beberapa alasan alternatif masih menyebutkan kesesuaian anggaran meskipun model tidak seharusnya menghitung atau menyimpulkan harga. Hal ini menunjukkan bahwa prompt yang lebih lengkap dapat membantu mengarahkan model, tetapi tidak menjamin model selalu mengikuti setiap instruksi.
+
+Oleh karena itu, validasi menggunakan Python tetap diperlukan.
 
 ---
 
@@ -930,7 +932,7 @@ Oleh karena itu, prompt engineering perlu didukung dengan validasi tambahan pada
 
 ## 11. Failure Case
 
-Pada bagian ini, saya menguji kondisi ketika pelanggan memasukkan budget yang terlalu rendah untuk membeli produk sesuai kategori dan preferensi yang diinginkan.
+Pada bagian ini, saya menguji kondisi ketika pelanggan memasukkan anggaran yang terlalu rendah untuk membeli produk sesuai kategori dan preferensi yang diinginkan.
 
 Pengujian ini bertujuan mengetahui bagaimana sistem memberikan respons ketika tidak ada kombinasi menu yang memenuhi kebutuhan pelanggan.
 
@@ -947,7 +949,7 @@ Saya menggunakan input berikut:
 }
 ```
 
-Pada pengujian ini, pelanggan hanya memiliki budget Rp10.000 dan menginginkan dimsum premium dengan rasa pedas.
+Pada pengujian ini, pelanggan hanya memiliki anggaran Rp10.000 dan menginginkan dimsum premium dengan rasa pedas.
 
 ### B. Actual Output Sebelum Perbaikan
 
@@ -965,24 +967,24 @@ Pada pengujian awal, sistem menghasilkan respons berikut:
 
 ### C. Masalah yang Ditemukan
 
-Pengujian ini bukan kegagalan teknis karena API tetap berhasil memberikan respons HTTP 200. Namun, sistem belum dapat memberikan rekomendasi menu karena tidak ada produk yang memenuhi budget pelanggan.
+Pengujian ini bukan kegagalan teknis karena API tetap berhasil memberikan respons. Namun, sistem belum dapat memberikan rekomendasi menu karena tidak ada produk yang memenuhi anggaran pelanggan.
 
 Saya menemukan beberapa hal:
 
-1. Budget Rp10.000 tidak mencukupi untuk membeli paket dimsum premium yang tersedia dalam katalog.
+1. Anggaran Rp10.000 tidak mencukupi untuk membeli paket dimsum premium yang tersedia dalam katalog.
 2. Sistem mengembalikan daftar rekomendasi utama yang kosong.
 3. Penjelasan yang diberikan belum memberikan saran yang cukup membantu pelanggan untuk menyesuaikan kebutuhannya.
-4. Pada pengujian sebelumnya, saya juga menemukan bahwa status budget sempat menjadi `within budget` meskipun daftar rekomendasi kosong.
+4. Pada pengujian sebelumnya, saya juga menemukan bahwa status anggaran sempat menjadi `within budget` meskipun daftar rekomendasi kosong.
 
-Masalah pada poin keempat merupakan kesalahan logika validasi di Python. Status budget seharusnya tidak dinyatakan sesuai jika sistem tidak menghasilkan menu yang dapat divalidasi.
+Masalah pada poin keempat merupakan kesalahan logika validasi di Python. Status anggaran seharusnya tidak dinyatakan sesuai jika sistem tidak menghasilkan menu yang dapat divalidasi.
 
 ### D. Perbaikan yang Dilakukan
 
 Saya melakukan dua perbaikan.
 
-**1. Memperbaiki logika status budget pada Python**
+**1. Memperbaiki logika status anggaran pada Python**
 
-Saya mengubah kondisi penentuan status budget agar aplikasi memeriksa terlebih dahulu apakah daftar rekomendasi utama kosong.
+Saya mengubah kondisi penentuan status anggaran agar aplikasi memeriksa terlebih dahulu apakah daftar rekomendasi utama kosong.
 
 Logika yang digunakan:
 
@@ -999,7 +1001,7 @@ Dengan kondisi tersebut, jika tidak ada rekomendasi utama yang berhasil divalida
 
 **2. Menambahkan constraint pada system prompt**
 
-Saya juga menambahkan instruksi khusus pada system prompt agar model menangani kondisi ketika tidak ada menu yang sesuai dengan budget.
+Saya juga menambahkan instruksi khusus pada system prompt agar model menangani kondisi ketika tidak ada menu yang sesuai dengan anggaran.
 
 Instruksi tambahan:
 
@@ -1013,7 +1015,7 @@ Jika tidak ada menu yang sesuai dengan budget:
 - Jangan mengarang harga maupun produk alternatif.
 ```
 
-Tujuan perubahan ini adalah agar model tidak memaksakan rekomendasi yang sebenarnya tidak sesuai dengan kemampuan budget pelanggan.
+Tujuan perubahan ini adalah agar model tidak memaksakan rekomendasi yang sebenarnya tidak sesuai dengan kemampuan anggaran pelanggan.
 
 ### E. Actual Output Setelah Perbaikan
 
@@ -1033,15 +1035,15 @@ Hasil yang diperoleh:
 
 ### F. Evaluasi Hasil Perbaikan
 
-Setelah perbaikan, sistem tetap mengembalikan daftar rekomendasi kosong dan status `no suitable menu`. Hasil tersebut sudah sesuai dengan kondisi ketika tidak ada produk yang memenuhi budget pelanggan.
+Setelah perbaikan, sistem tetap mengembalikan daftar rekomendasi kosong dan status `no suitable menu`. Hasil tersebut sudah sesuai dengan kondisi ketika tidak ada produk yang memenuhi anggaran pelanggan.
 
 Saya juga melihat bahwa penjelasan yang diberikan menjadi lebih spesifik terhadap preferensi rasa pedas dan jenis menu yang diminta.
 
-Namun, model belum memberikan saran untuk menyesuaikan budget atau memilih jenis menu lain sebagaimana yang diminta dalam constraint tambahan.
+Namun, model belum memberikan saran untuk menyesuaikan anggaran atau memilih jenis menu lain sebagaimana yang diminta dalam constraint tambahan.
 
-Dengan demikian, perbaikan ini menunjukkan peningkatan pada penjelasan masalah, tetapi belum sepenuhnya menyelesaikan kekurangan yang ditemukan. Dari pengujian ini, saya memahami bahwa penambahan instruksi pada prompt tidak selalu menjamin model akan mengikuti seluruh ketentuan.
+Dengan demikian, perbaikan ini menunjukkan bahwa penentuan status anggaran sudah diperbaiki dan penjelasan masalah menjadi lebih spesifik, tetapi belum sepenuhnya menyelesaikan kekurangan yang ditemukan. Dari pengujian ini, saya memahami bahwa penambahan instruksi pada prompt tidak selalu menjamin model akan mengikuti seluruh ketentuan.
 
-Jika aplikasi dikembangkan lebih lanjut, saran penyesuaian budget dapat dibuat menggunakan logika Python berdasarkan harga terendah dari kategori yang diminta. Dengan cara tersebut, aplikasi tidak hanya mengandalkan model untuk memberikan saran, tetapi juga dapat menggunakan informasi harga yang benar-benar tersedia.
+Jika aplikasi dikembangkan lebih lanjut, saran penyesuaian anggaran dapat dibuat menggunakan logika Python berdasarkan harga terendah dari kategori yang diminta. Dengan cara tersebut, aplikasi tidak hanya mengandalkan model untuk memberikan saran, tetapi juga dapat menggunakan informasi harga yang benar-benar tersedia.
 
 ---
 
@@ -1051,7 +1053,7 @@ Jika aplikasi dikembangkan lebih lanjut, saran penyesuaian budget dapat dibuat m
 
 Bagian yang cukup sulit bagi saya adalah memahami bagaimana mengatur instruksi kepada LLM agar dapat menghasilkan rekomendasi menu sesuai kebutuhan pengguna dan data produk yang tersedia.
 
-Saya perlu mempelajari cara menyusun system prompt yang jelas agar model dapat memahami informasi seperti budget, jumlah orang, preferensi rasa, dan jenis menu. Selain itu, saya juga perlu memastikan bahwa model hanya menggunakan nama produk dan pilihan ukuran paket yang benar-benar tersedia dalam katalog Dapoyumya.
+Saya perlu mempelajari cara menyusun system prompt yang jelas agar model dapat memahami informasi seperti anggaran, jumlah orang, preferensi rasa, dan jenis menu. Selain itu, saya juga perlu memastikan bahwa model hanya menggunakan nama produk dan pilihan ukuran paket yang benar-benar tersedia dalam katalog Dapoyumya.
 
 Tantangan lainnya adalah mengatur hasil keluaran model dalam format JSON agar dapat diproses kembali oleh aplikasi. Saya juga perlu memahami bagaimana hasil rekomendasi divalidasi menggunakan Python untuk menghitung total harga berdasarkan katalog, sehingga perhitungan tidak hanya bergantung pada jawaban yang dihasilkan AI.
 
@@ -1071,7 +1073,7 @@ Setelah itu, aplikasi membaca katalog produk dari `menu_data.json` melalui fungs
 
 LLM menghasilkan rekomendasi dalam format JSON. Setelah respons diterima, Python memeriksa kembali nama produk, ukuran paket, dan jumlah pembelian melalui fungsi validasi pada `menu_data.py`.
 
-Jika produk dan ukuran paket tersedia, Python mengambil harga dari katalog dan menghitung subtotal serta total harga. Selanjutnya, aplikasi menentukan status budget berdasarkan hasil perhitungan tersebut.
+Jika produk dan ukuran paket tersedia, Python mengambil harga dari katalog dan menghitung subtotal serta total harga. Selanjutnya, aplikasi menentukan status anggaran berdasarkan hasil perhitungan tersebut.
 
 Hasil akhirnya dikembalikan kepada pengguna melalui API. Dengan alur ini, AI bertugas memahami kebutuhan dan menyusun rekomendasi, sedangkan Python memastikan bahwa data produk dan perhitungan harga sesuai dengan katalog.
 
@@ -1079,9 +1081,9 @@ Hasil akhirnya dikembalikan kepada pengguna melalui API. Dengan alur ini, AI ber
 
 Menurut saya, kekurangan terbesar aplikasi ini adalah hasil rekomendasi masih bergantung pada kemampuan LLM dalam mengikuti instruksi yang diberikan.
 
-Meskipun sudah menggunakan system prompt dengan beberapa constraint, model terkadang belum mengikuti seluruh ketentuan. Contohnya, pada pengujian budget yang tidak mencukupi, model belum memberikan saran penyesuaian kebutuhan sesuai instruksi tambahan.
+Meskipun sudah menggunakan system prompt dengan beberapa constraint, model terkadang belum mengikuti seluruh ketentuan. Contohnya, pada pengujian anggaran yang tidak mencukupi, model belum memberikan saran penyesuaian kebutuhan sesuai instruksi tambahan.
 
-Selain itu, aplikasi masih perlu dikembangkan agar dapat menangani kondisi ketika produk tidak ditemukan, preferensi pelanggan tidak tersedia, atau budget terlalu rendah dengan respons yang lebih membantu.
+Selain itu, aplikasi masih perlu dikembangkan agar dapat menangani kondisi ketika produk tidak ditemukan, preferensi pelanggan tidak tersedia, atau anggaran terlalu rendah dengan respons yang lebih membantu.
 
 ### 5. Jika provider LLM kalian diganti, misalnya dari Groq ke Gemini atau OpenAI, bagian mana dari project yang menurut kalian perlu diubah?
 
@@ -1093,11 +1095,11 @@ Namun, bagian katalog, validasi produk, dan perhitungan harga menggunakan Python
 
 ### 6. Setelah mencoba aplikasi kalian sendiri, apa satu improvement yang menurut kalian paling penting jika project ini dilanjutkan?
 
-Jika memiliki lebih banyak waktu, saya ingin mengembangkan mekanisme rekomendasi yang dapat memberikan saran ketika budget pengguna tidak mencukupi.
+Jika memiliki lebih banyak waktu, saya ingin mengembangkan mekanisme rekomendasi yang dapat memberikan saran ketika anggaran pengguna tidak mencukupi.
 
-Contohnya, aplikasi dapat memeriksa harga paket terendah dari kategori yang diminta, kemudian memberikan informasi mengenai perkiraan budget minimum berdasarkan katalog. Dengan demikian, pelanggan mendapatkan arahan yang lebih jelas ketika kombinasi menu yang diinginkan belum dapat dipenuhi.
+Contohnya, aplikasi dapat memeriksa harga paket terendah dari kategori yang diminta, kemudian memberikan informasi mengenai perkiraan anggaran minimum berdasarkan katalog. Dengan demikian, pelanggan mendapatkan arahan yang lebih jelas ketika kombinasi menu yang diinginkan belum dapat dipenuhi.
 
-Saya juga ingin menambahkan validasi output yang lebih ketat agar rekomendasi benar-benar sesuai dengan katalog, preferensi pengguna, dan batas budget. Dengan begitu, aplikasi tidak hanya menghasilkan rekomendasi, tetapi juga dapat memberikan respons yang lebih membantu ketika kebutuhan pelanggan tidak dapat dipenuhi.
+Saya juga ingin menambahkan validasi output yang lebih ketat agar rekomendasi benar-benar sesuai dengan katalog, preferensi pengguna, dan batas anggaran. Dengan begitu, aplikasi tidak hanya menghasilkan rekomendasi, tetapi juga dapat memberikan respons yang lebih membantu ketika kebutuhan pelanggan tidak dapat dipenuhi.
 
 ---
 
@@ -1105,7 +1107,7 @@ Saya juga ingin menambahkan validasi output yang lebih ketat agar rekomendasi be
 
 ### A. AI Tools yang Digunakan
 
-aya menggunakan ChatGPT sebagai alat bantu selama proses pengerjaan proyek Dapoyumya Menu Recommendation Assistant. Saya memanfaatkan AI untuk membantu memahami materi, mempelajari cara kerja teknologi yang digunakan, serta mendapatkan arahan ketika mengembangkan aplikasi.
+Saya menggunakan ChatGPT sebagai alat bantu selama proses pengerjaan proyek Dapoyumya Menu Recommendation Assistant. Saya memanfaatkan AI untuk membantu memahami materi, mempelajari cara kerja teknologi yang digunakan, serta mendapatkan arahan ketika mengembangkan aplikasi.
 
 ### B. AI Digunakan untuk Membantu Bagian Apa?
 
@@ -1119,11 +1121,11 @@ Selama proses pengembangan, saya juga menggunakan AI untuk memahami fungsi setia
 
 Saya menentukan use case aplikasi, menggunakan katalog produk Dapoyumya sebagai dataset, menyiapkan struktur folder, mengatur environment, dan menjalankan aplikasi.
 
-Saya juga melakukan pengujian endpoint melalui Swagger UI dengan memasukkan beberapa kebutuhan pelanggan, termasuk kondisi ketika budget mencukupi maupun ketika budget tidak mencukupi.
+Saya juga melakukan pengujian endpoint melalui Swagger UI dengan memasukkan beberapa kebutuhan pelanggan, termasuk kondisi ketika anggaran mencukupi maupun ketika anggaran tidak mencukupi.
 
 Untuk eksperimen prompt engineering, saya menjalankan Prompt A, Prompt B, dan Prompt C menggunakan input yang sama, kemudian mengamati serta membandingkan respons yang dihasilkan.
 
-Ketika menemukan masalah pada status budget, saya memperbaiki logika validasi pada Python. Saya juga menambahkan constraint pada system prompt setelah menemukan bahwa model belum memberikan respons yang sesuai pada kondisi budget yang tidak mencukupi.
+Ketika menemukan masalah pada status anggaran, saya memperbaiki logika validasi pada Python. Saya juga menambahkan constraint pada system prompt setelah menemukan bahwa model belum memberikan respons yang sesuai pada kondisi anggaran yang tidak mencukupi.
 
 Seluruh hasil pengujian tersebut saya gunakan sebagai dasar untuk menyusun analisis dan refleksi proyek.
 
@@ -1133,12 +1135,10 @@ Seluruh hasil pengujian tersebut saya gunakan sebagai dasar untuk menyusun anali
 
 Melalui proyek ini, saya berhasil membangun aplikasi Dapoyumya Menu Recommendation Assistant menggunakan Python, FastAPI, Groq API, dan model `openai/gpt-oss-120b`.
 
-Aplikasi dapat menerima kebutuhan pelanggan berupa budget, jumlah orang, preferensi rasa, dan jenis menu. Selanjutnya, LLM digunakan untuk memahami kebutuhan tersebut dan menghasilkan rekomendasi berdasarkan katalog produk Dapoyumya.
+Aplikasi dapat menerima kebutuhan pelanggan berupa anggaran, jumlah orang, preferensi rasa, dan jenis menu. Selanjutnya, LLM digunakan untuk memahami kebutuhan tersebut dan menghasilkan rekomendasi berdasarkan katalog produk Dapoyumya.
 
-Saya juga menerapkan validasi menggunakan Python untuk memeriksa nama produk, ukuran paket, dan jumlah pembelian. Harga produk diambil dari katalog, kemudian Python menghitung subtotal dan total harga serta menentukan status kesesuaian budget.
+Saya juga menerapkan validasi menggunakan Python untuk memeriksa nama produk, ukuran paket, dan jumlah pembelian. Harga produk diambil dari katalog, kemudian Python menghitung subtotal dan total harga serta menentukan status kesesuaian anggaran.
 
 Melalui eksperimen prompt engineering, saya menemukan bahwa Prompt C menghasilkan struktur jawaban yang paling sesuai dengan kebutuhan aplikasi dibandingkan Prompt A dan Prompt B. Namun, pengujian failure case menunjukkan bahwa model masih dapat mengabaikan sebagian instruksi meskipun sudah diberikan constraint yang lebih lengkap.
 
 Dari proses pengerjaan ini, saya memahami bahwa membangun aplikasi Generative AI tidak hanya sebatas menghubungkan program dengan LLM. Saya juga perlu memperhatikan penyusunan prompt, validasi input dan output, pengelolaan data, penanganan kesalahan, serta evaluasi hasil agar aplikasi dapat memberikan respons yang sesuai dengan kebutuhan pengguna.
-
----
